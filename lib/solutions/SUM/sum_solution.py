@@ -5,4 +5,3 @@ def compute(x, y):
     if y < 0 or y > 100:
         raise ValueError("y is not in range")
     return x + y
-
