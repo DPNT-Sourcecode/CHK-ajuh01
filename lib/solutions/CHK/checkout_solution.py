@@ -1,4 +1,5 @@
 from collections import defaultdict
+import string
 
 # noinspection PyUnusedLocal
 # skus = unicode string
@@ -50,7 +51,7 @@ item_pricing = {
     "N": {"price": 40, "bundles": [], "free_item": [(3, "M")]},
     "O": {"price": 10, "bundles": [], },
     "P": {"price": 50, "bundles": [(5, 200)], }, "Q": {"price": 30, "bundles": [(3, 80)], },
-    "R": {"price": 50, "free_item": [(3, "Q")], },
+    "R": {"price": 50, "bundles": [], "free_item": [(3, "Q")], },
     "S": {"price": 30, "bundles": [], },
     "T": {"price": 20, "bundles": [], },
     "U": {"price": 40, "bundles": [(3, 80)], },
@@ -66,32 +67,29 @@ def checkout(skus):
     if not isinstance(skus, str):
         return -1
     for item in skus:
-        if item not in "ABCDEF":
+        if item not in string.ascii_uppercase:
             return -1
         basket[item] += 1
 
     price = 0
-    e_values = basket["E"]
-    for key, value in basket.items():
 
-        if key == "C":
-            price += value * 20
-        elif key == "E":
-            price += value * 40
-        elif key == "F":
-            offer, value = divmod(value, 3)
-            price += offer * 2 * 10 + value * 10
-        elif key == "D":
-            price += value * 15
-        elif key == "A":
-            offer1, value = divmod(value, 5)
-            offer2, value = divmod(value, 3)
-            price += offer1 * 200 + offer2 * 130 + value * 50
-        elif key == "B":
-            value = max(0, value - e_values // 2)
-            offer, value = divmod(value, 2)
-            price += offer * 45 + value * 30
+    for item in string.ascii_uppercase[::-1]:
+        value = basket[item]
+        if value <= 0:
+            continue
+        pricing_info = item_pricing[item]
+
+        free_items = pricing_info.get("free_item", [])
+        for free_count, item_name in free_items:
+            basket[item_name] -= value//free_count
+        for bundle_count, bundle_price in pricing_info.get("bundles", []):
+            offer, value = divmod(value, bundle_count)
+            price += offer * bundle_price
+        price += value * pricing_info["price"]
+
+
 
     return price
+
 
 
