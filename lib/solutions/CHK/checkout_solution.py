@@ -68,14 +68,21 @@ def substract_group_discount(basket):
     value = 0
     count_items = 0
     current_price = 0
-    prices = []
+
     for item in group_discounts["group"]:
         basket_count = basket[item]
-        to_take = (count_items + basket_count) // 3 * 3 - count_items
         item_price = item_pricing[item]["price"]
-        prices.append(item_price)
-    if count_items < 3:
-        return 0
+        to_take = (count_items + basket_count) // 3 * 3 - count_items
+        to_take = max(to_take, 0)
+        current_price += to_take*item_price
+        count_items += to_take
+
+        real_taking = count_items // 3
+        value += -current_price + group_discounts["price"] * real_taking
+
+
+
+
 
     return value
 
@@ -108,5 +115,6 @@ def checkout(skus):
 
 
     return price
+
 
 
