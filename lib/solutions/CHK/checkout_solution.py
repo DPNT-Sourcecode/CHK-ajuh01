@@ -55,7 +55,7 @@ item_pricing = {
     "R": {"price": 50, "bundles": [], "free_item": [(3, "Q")], },
     "S": {"price": 30, "bundles": [], },
     "T": {"price": 20, "bundles": [], },
-    "U": {"price": 40, "bundles": [(3, 80)], },
+    "U": {"price": 40, "bundles": [(4, 120)], },
     "V": {"price": 50, "bundles": [(3, 130), (2, 90)], },
     "W": {"price": 20, "bundles": [], },
     "X": {"price": 90, "bundles": [], },
@@ -90,6 +90,7 @@ def checkout(skus):
         price += value * pricing_info["price"]
 
     return price
+
 
 
 
