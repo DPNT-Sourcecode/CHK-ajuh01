@@ -10,3 +10,9 @@ class TestCheckout():
 
     def test_checkout_offer_2(self):
         assert checkout_solution.checkout("AABBCD") == 180
+
+    def test_checkout_offer_8A(self):
+        assert checkout_solution.checkout("AAAAAAAA") == 350
+
+    def test_checkout_offer_double_E(self):
+        assert checkout_solution.checkout("AABBEE") == 100 + 30 + 80
