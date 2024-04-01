@@ -14,11 +14,17 @@ def checkout(skus):
         basket[item] += 1
 
     price = 0
-    for key, value in basket:
+    for key, value in basket.items():
         if key == "C":
             price += value * 20
         elif key == "D":
             price += value * 15
-        elif key == "D" and value:
-            price += value * 15
+        elif key == "A":
+            offer, value = divmod(value, 3)
+            price += offer * 130 + value * 50
+        elif key == "B":
+            offer, value = divmod(value, 2)
+            price += offer * 45 + value * 30
+    return price
+
 
