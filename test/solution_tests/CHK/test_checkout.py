@@ -34,4 +34,3 @@ class TestCheckout():
 
     def test_checkout_group_discount_favor(self):
         assert checkout_solution.checkout("STXZ") == 45 + 17
-

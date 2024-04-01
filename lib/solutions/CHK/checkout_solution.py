@@ -75,6 +75,7 @@ def substract_group_discount(basket):
             all_prices.append(item_price)
     all_prices.sort(reverse=True)
     n = len(all_prices) // 3
+    print(all_prices, n)
     return - sum(all_prices[:n * 3]) + group_discounts["price"] * n
 
 
@@ -106,7 +107,3 @@ def checkout(skus):
     price += substract_group_discount(basket)
 
     return price
-
-
-
-
