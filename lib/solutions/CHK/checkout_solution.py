@@ -28,7 +28,7 @@ def checkout(skus):
         elif key == "A":
             offer1, value = divmod(value, 5)
             offer2, value = divmod(value, 3)
-            price += offer1 * 200 + offer2 * 150 + value * 50
+            price += offer1 * 200 + offer2 * 130 + value * 50
         elif key == "B":
             value = max(0, value - e_values // 2)
             offer, value = divmod(value, 2)
