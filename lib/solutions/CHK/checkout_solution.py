@@ -1,6 +1,5 @@
 from collections import defaultdict
 
-
 # noinspection PyUnusedLocal
 # skus = unicode string
 """
@@ -35,15 +34,32 @@ from collections import defaultdict
 """
 
 item_pricing = {
-    "A":{"price": 50, "bundles": [(5, 200), (3, 130),],},
-"B":{"price": 30, "bundles": [(2, 45),],},
-"C":{"price": 20, "bundles": [],},
-"D":{"price": 15, "bundles": [],},
-"E":{"price": 40, "bundles": [], "free_item": [(2, "B")]},
-"F":{"price": 10, "bundles": [(3, 20)],},
-"G":{"price": 20, "bundles": [],},
-
+    "A": {"price": 50, "bundles": [(5, 200), (3, 130), ], },
+    "B": {"price": 30, "bundles": [(2, 45), ], },
+    "C": {"price": 20, "bundles": [], },
+    "D": {"price": 15, "bundles": [], },
+    "E": {"price": 40, "bundles": [], "free_item": [(2, "B")]},
+    "F": {"price": 10, "bundles": [(3, 20)], },
+    "G": {"price": 20, "bundles": [], },
+    "H": {"price": 10, "bundles": [(10, 80), (5, 45)], },
+    "I": {"price": 35, "bundles": [], },
+    "J": {"price": 60, "bundles": [], },
+    "K": {"price": 80, "bundles": [(2, 150)], },
+    "L": {"price": 90, "bundles": [], },
+    "M": {"price": 15, "bundles": [], },
+    "N": {"price": 40, "bundles": [], "free_item": [(3, "M")]},
+    "O": {"price": 10, "bundles": [], },
+    "P": {"price": 50, "bundles": [(5, 200)], }, "Q": {"price": 30, "bundles": [(3, 80)], },
+    "R": {"price": 50, "free_item": [(3, "Q")], },
+    "S": {"price": 30, "bundles": [], },
+    "T": {"price": 20, "bundles": [], },
+    "U": {"price": 40, "bundles": [(3, 80)], },
+    "V": {"price": 50, "bundles": [(3, 130), (2, 90)], },
+    "W": {"price": 20, "bundles": [], },
+    "X": {"price": 90, "bundles": [], }, "Y": {"price": 10, "bundles": [], },
+    "Z": {"price": 50, "bundles": [], },
 }
+
 
 def checkout(skus):
     basket = defaultdict(int)
@@ -76,6 +92,6 @@ def checkout(skus):
             offer, value = divmod(value, 2)
             price += offer * 45 + value * 30
 
-
     return price
+
 
