@@ -50,14 +50,16 @@ item_pricing = {
     "M": {"price": 15, "bundles": [], },
     "N": {"price": 40, "bundles": [], "free_item": [(3, "M")]},
     "O": {"price": 10, "bundles": [], },
-    "P": {"price": 50, "bundles": [(5, 200)], }, "Q": {"price": 30, "bundles": [(3, 80)], },
+    "P": {"price": 50, "bundles": [(5, 200)], },
+    "Q": {"price": 30, "bundles": [(3, 80)], },
     "R": {"price": 50, "bundles": [], "free_item": [(3, "Q")], },
     "S": {"price": 30, "bundles": [], },
     "T": {"price": 20, "bundles": [], },
     "U": {"price": 40, "bundles": [(3, 80)], },
     "V": {"price": 50, "bundles": [(3, 130), (2, 90)], },
     "W": {"price": 20, "bundles": [], },
-    "X": {"price": 90, "bundles": [], }, "Y": {"price": 10, "bundles": [], },
+    "X": {"price": 90, "bundles": [], },
+    "Y": {"price": 10, "bundles": [], },
     "Z": {"price": 50, "bundles": [], },
 }
 
@@ -81,15 +83,14 @@ def checkout(skus):
 
         free_items = pricing_info.get("free_item", [])
         for free_count, item_name in free_items:
-            basket[item_name] -= value//free_count
+            basket[item_name] -= value // free_count
         for bundle_count, bundle_price in pricing_info.get("bundles", []):
             offer, value = divmod(value, bundle_count)
             price += offer * bundle_price
         price += value * pricing_info["price"]
 
-
-
     return price
+
 
 
 

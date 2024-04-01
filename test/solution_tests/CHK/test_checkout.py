@@ -25,3 +25,6 @@ class TestCheckout():
 
     def test_checkout_offer_7F(self):
         assert checkout_solution.checkout("FFFFFFF") == 50
+
+
+
