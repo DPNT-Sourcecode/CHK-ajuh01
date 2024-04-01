@@ -89,4 +89,7 @@ def checkout(skus):
             price += offer * bundle_price
         price += value * pricing_info["price"]
 
+
+
     return price
+
