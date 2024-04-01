@@ -63,28 +63,20 @@ item_pricing = {
     "Z": {"price": 50, "bundles": [], },
 }
 
-group_discounts = {"group": ["Z","Y", "S","T","X",], "price":45}
-def substract_group_discount(basket):
-    value = 0
-    count_items = 0
-    current_price = 0
+group_discounts = {"group": ["Z", "Y", "S", "T", "X", ], "price": 45}
 
+
+def substract_group_discount(basket):
+    all_prices = []
     for item in group_discounts["group"]:
         basket_count = basket[item]
         item_price = item_pricing[item]["price"]
-        to_take = (count_items + basket_count) // 3 * 3 - count_items
-        to_take = max(to_take, 0)
-        current_price += to_take*item_price
-        count_items += to_take
+        for _ in range(basket_count):
+            all_prices.append(item_price)
+    all_prices.sort(reverse=True)
+    n = len(all_prices) // 3
+    return - sum(all_prices[:n * 3]) + group_discounts["price"] * n
 
-        real_taking = count_items // 3
-        value += -current_price + group_discounts["price"] * real_taking
-
-
-
-
-
-    return value
 
 def checkout(skus):
     basket = defaultdict(int)
@@ -111,10 +103,10 @@ def checkout(skus):
             price += offer * bundle_price
         price += value * pricing_info["price"]
 
-    substract_group_discount(basket)
-
+    price += substract_group_discount(basket)
 
     return price
+
 
 
 
