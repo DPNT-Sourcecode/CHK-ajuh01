@@ -30,5 +30,3 @@ class TestCheckout():
         assert checkout_solution.checkout("FFFFFFF") == 50
 
 
-
-

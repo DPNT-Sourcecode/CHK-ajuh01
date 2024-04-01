@@ -90,8 +90,3 @@ def checkout(skus):
         price += value * pricing_info["price"]
 
     return price
-
-
-
-
-
